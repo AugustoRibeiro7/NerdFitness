@@ -1,0 +1,53 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package nerdfitness;
+
+/**
+ *
+ * @author gutom
+ */
+public class PessoaDao {
+    
+    
+    public PessoaDao()
+    {
+        populaPessoas();
+    }
+    
+    public void populaPessoas()
+    {
+        Pessoa p1 = new Pessoa();
+        p1.setNome("Harry");
+        p1.setLogin("Potter");
+        p1.setSenha("934");
+        armazenarPessoa(p1);
+        
+        Pessoa p2 = new Pessoa();
+        p2.setNome("WIsley");
+        p2.setLogin("Carro");
+        p2.setSenha("Voador");
+        armazenarPessoa(p2);
+        
+        Pessoa p3 = new Pessoa();
+        p3.setNome("Josoares");
+        p3.setLogin("Jo");
+        p3.setSenha("123");
+        armazenarPessoa(p3);
+    }
+    
+    
+    static Pessoa clientes[] = new Pessoa[10];
+    public static void armazenarPessoa(Pessoa p)
+    {
+        int i;
+        for(i=0; clientes[i] != null; i++){}
+        
+        if(i < clientes.length)
+            clientes[i] = p;
+        else
+            System.out.println("Espaço cheio");
+                    
+    }
+}
