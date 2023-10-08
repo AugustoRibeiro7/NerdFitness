@@ -15,11 +15,16 @@ public class NerdFitness {
     // CONSTRUTOR PARA RODAR O CODIGO
     public NerdFitness() {
         new PessoaDao();
+        Interface it = new Interface();
         
        
         System.out.println(PessoaDao.clientes[0].getNome());
         System.out.println(PessoaDao.clientes[1].getNome());
         System.out.println(PessoaDao.clientes[2].getNome());
+        
+        it.tela_inicial();
+        
+        
         
         
     }

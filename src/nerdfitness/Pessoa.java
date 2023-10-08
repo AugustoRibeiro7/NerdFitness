@@ -13,6 +13,10 @@ import java.util.Date;
 public class Pessoa {
     
     
+    // ID E QUANTIDADE DE CONTAS
+    private static long quant_pessoas;
+    private long id;
+    
     //VARIAVEIS PARA OS DADOS DE PESSOA
      private String nome;
      private String sexo;
@@ -22,6 +26,25 @@ public class Pessoa {
      private String tipoUsuario;
      private Date dataCriacao;
      private Date dataModificacao;
+     
+     // CONSTRUTOR
+     public Pessoa()
+     {
+         Pessoa.quant_pessoas++;
+        this.id = Pessoa.quant_pessoas;
+     }         
+     
+     //GET PARA PEGAR O ID
+
+    public long getId() {
+        return id;
+    }
+    
+    //GET PARA PEGAR A QUANTIDADE DE CONTAS CRIADAS
+
+    public static long getQuant_pessoas() {
+        return quant_pessoas;
+    }
     
     //GETS E SETS DAS VARIAVEIS DE PESSOA
 

@@ -4,6 +4,7 @@
  */
 package nerdfitness;
 
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -14,22 +15,75 @@ public class Interface {
     Scanner scan = new Scanner(System.in);
     
     
+    public boolean verifica_usuario(String nome)
+    {
+        /*
+        laço sem codigo pois ele segue a logica de rodar se o nome for diferente do
+        vetor que armazena a informação, então se for igual, o laço para e ele é pego pelo if,
+        ja se nao for, ele roda ate o final e retorna false
+        */
+        
+        System.out.println("Teste");
+        int i;
+        for(i=0; !nome.equals(PessoaDao.clientes[i].getNome()) || i != PessoaDao.clientes.length-1; i++){}
+        
+        if(nome.equals(PessoaDao.clientes[i].getNome()))
+                return true;
+        
+        return false;
+    }
+    
+    
     public void criaPessoa()
     {
         System.out.print("Nome: ");
         String nome = scan.nextLine();
          
         //funçao verefica se ja tem o nome
-        
-        
+        if(verifica_usuario(nome))
+        {
+            //avisa a existencia do usuario
+            System.out.println("Usuário já existente!");
+        }
+        else
+        {
+            //cria o novo usuario
+            Pessoa p = new Pessoa();
+            p.setNome(nome);
+            
+            System.out.print("Sexo: ");
+            p.setSexo(scan.nextLine());
+            
+           //tipos dates: ainda irei colocar
+            
+            System.out.print("Login: ");
+            p.setLogin(scan.nextLine());
+            
+            System.out.print("Senha: ");
+            p.setSenha(scan.nextLine());
+            
+            //armazenar na memoria
+            PessoaDao.armazenarPessoa(p);
+        }
         
     }
     
-    public boolean verefica_usuario(String nome)
+    public void tela_inicial()
     {
-        for(int i=0; !nome.equals(PessoaDao.clientes[i]) || i != PessoaDao.clientes.length-1; i++)
+        System.out.println("""
+                           Login (0) 
+                           Cadastrar (1)""");
+        int x = Integer.parseInt(scan.nextLine());
+        
+        if(x == 0)
         {
             
+        } 
+        else
+        {
+            criaPessoa();
         }
     }
+    
+    
 }

@@ -9,19 +9,16 @@ package nerdfitness;
  */
 public class Conta {
     
-    // ID E QUANTIDADE DE CONTAS
-    private static long quant_contas;
-    private long id;
+    
     
     //VARIAVEIS DA CONTA
     Pessoa cliente = new Pessoa();
     Receita receita = new Receita();
     
-    // CONSTRUTOR
+    
     public Conta()
     {
-        Conta.quant_contas++;
-        this.id = Conta.quant_contas;
+        
     }
     
     
