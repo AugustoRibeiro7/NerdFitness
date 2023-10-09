@@ -21,6 +21,8 @@ public class PessoaDao {
         Pessoa p1 = new Pessoa();
         p1.setNome("Harry");
         p1.setLogin("Potter");
+        p1.setNascimento("20/05/2000");
+        p1.setSexo("masculino");
         p1.setSenha("934");
         armazenarPessoa(p1);
         
@@ -28,12 +30,16 @@ public class PessoaDao {
         p2.setNome("WIsley");
         p2.setLogin("Carro");
         p2.setSenha("Voador");
+        p1.setNascimento("01/01/2001");
+        p2.setSexo("feminino");
         armazenarPessoa(p2);
         
         Pessoa p3 = new Pessoa();
         p3.setNome("Josoares");
         p3.setLogin("Jo");
         p3.setSenha("123");
+        p1.setSexo("masculino");
+        p1.setNascimento("30/12/1995");
         armazenarPessoa(p3);
     }
     

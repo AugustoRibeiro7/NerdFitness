@@ -5,6 +5,7 @@
 package nerdfitness;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -26,6 +27,9 @@ public class Pessoa {
      private String tipoUsuario;
      private LocalDate dataCriacao;
      private LocalDate dataModificacao;
+     
+     //formato para datas
+     private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
      
      // CONSTRUTOR
      public Pessoa()
@@ -72,8 +76,8 @@ public class Pessoa {
         return nascimento;
     }
 
-    public void setNascimento(LocalDate nascimento) {
-        this.nascimento = nascimento;
+    public void setNascimento(String nascimento) {
+        this.nascimento = LocalDate.parse(nascimento, dtf);
     }
 
     public String getLogin() {

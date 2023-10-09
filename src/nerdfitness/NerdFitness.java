@@ -14,15 +14,19 @@ public class NerdFitness {
 
     // CONSTRUTOR PARA RODAR O CODIGO
     public NerdFitness() {
+        
         new PessoaDao();
-        Interface it = new Interface();
         
-       
-        System.out.println(PessoaDao.clientes[0].getNome());
-        System.out.println(PessoaDao.clientes[1].getNome());
-        System.out.println(PessoaDao.clientes[2].getNome());
+        //método que roda a tela de login/cadastro
+        new Interface();
         
-        it.tela_inicial();
+       //testando as pessoas criadas automaticamente pelo PessoaDao
+        //System.out.println(PessoaDao.clientes[0].getNome());
+        //System.out.println(PessoaDao.clientes[1].getNome());
+       // System.out.println(PessoaDao.clientes[2].getNome());
+        
+        
+        
         
         
         

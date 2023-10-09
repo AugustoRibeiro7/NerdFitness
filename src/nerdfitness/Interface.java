@@ -6,7 +6,6 @@ package nerdfitness;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -15,6 +14,12 @@ import java.util.Scanner;
  */
 public class Interface {
     Scanner scan = new Scanner(System.in);
+    
+    //construtor
+    public Interface()
+    {
+        tela_inicial();
+    }
     
     
     public boolean verifica_usuario(String nome)
@@ -25,7 +30,6 @@ public class Interface {
         ja se nao for, ele roda ate o final e retorna false
         */
         
-        System.out.println("Teste");
         int i;
         for(i=0; PessoaDao.clientes[i] != null && !nome.equals(PessoaDao.clientes[i].getNome()) && i < PessoaDao.clientes.length; i++){}
         
@@ -59,13 +63,9 @@ public class Interface {
             p.setSexo(scan.nextLine());
             
             //recebendo datas
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             
             System.out.print("Data de nascimento: ");
-            p.setNascimento(LocalDate.parse(scan.nextLine(), dtf));
-            
-            
-            
+            p.setNascimento(scan.nextLine());
             
             
             System.out.print("Login: ");
@@ -80,21 +80,39 @@ public class Interface {
         
     }
     
-    public void tela_inicial()
+    private void tela_inicial()
     {
-        System.out.println("""
+        int x;
+        do
+        {
+            System.out.println("""
                            Login (0) 
-                           Cadastrar (1)""");
-        int x = Integer.parseInt(scan.nextLine());
+                           Cadastrar (1)
+                           Fechar programa (2)""");
+            x = Integer.parseInt(scan.nextLine());
+
+            switch (x) {
+                case 0:
+                    System.out.print("usuario: ");
+                    String user = scan.nextLine();
+                    if(!verifica_usuario(user))
+                    {
+                        System.out.println("Usuário já cadastrado");
+                    }
+                    else
+                    {
+                        //vereficar senha
+                    }   
+                    break;
+                case 1:
+                    criaPessoa();
+                    break;
+                case 2:
+                    System.out.println("Programa Encerrado");
+                    break;
+            }
+        }while(x != 2);
         
-        if(x == 0)
-        {
-            
-        } 
-        else
-        {
-            criaPessoa();
-        }
     }
     
     
