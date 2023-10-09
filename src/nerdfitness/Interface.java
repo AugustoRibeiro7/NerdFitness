@@ -4,6 +4,8 @@
  */
 package nerdfitness;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -25,11 +27,13 @@ public class Interface {
         
         System.out.println("Teste");
         int i;
-        for(i=0; !nome.equals(PessoaDao.clientes[i].getNome()) || i != PessoaDao.clientes.length-1; i++){}
+        for(i=0; PessoaDao.clientes[i] != null && !nome.equals(PessoaDao.clientes[i].getNome()) && i < PessoaDao.clientes.length; i++){}
         
-        if(nome.equals(PessoaDao.clientes[i].getNome()))
+        if (PessoaDao.clientes[i] != null)
+        {
+            if(nome.equals(PessoaDao.clientes[i].getNome()))
                 return true;
-        
+        }
         return false;
     }
     
@@ -54,7 +58,15 @@ public class Interface {
             System.out.print("Sexo: ");
             p.setSexo(scan.nextLine());
             
-           //tipos dates: ainda irei colocar
+            //recebendo datas
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            
+            System.out.print("Data de nascimento: ");
+            p.setNascimento(LocalDate.parse(scan.nextLine(), dtf));
+            
+            
+            
+            
             
             System.out.print("Login: ");
             p.setLogin(scan.nextLine());

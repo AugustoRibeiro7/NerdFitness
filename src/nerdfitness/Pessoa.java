@@ -4,7 +4,7 @@
  */
 package nerdfitness;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -20,18 +20,22 @@ public class Pessoa {
     //VARIAVEIS PARA OS DADOS DE PESSOA
      private String nome;
      private String sexo;
-     private Date nascimento;
+     private LocalDate nascimento;
      private String login;
      private String senha;
      private String tipoUsuario;
-     private Date dataCriacao;
-     private Date dataModificacao;
+     private LocalDate dataCriacao;
+     private LocalDate dataModificacao;
      
      // CONSTRUTOR
      public Pessoa()
      {
+         //controle do id
          Pessoa.quant_pessoas++;
         this.id = Pessoa.quant_pessoas;
+        
+        //data de criação
+        this.dataCriacao = LocalDate.now();
      }         
      
      //GET PARA PEGAR O ID
@@ -64,11 +68,11 @@ public class Pessoa {
         this.sexo = sexo;
     }
 
-    public Date getNascimento() {
+    public LocalDate getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
 
@@ -96,19 +100,19 @@ public class Pessoa {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
     
