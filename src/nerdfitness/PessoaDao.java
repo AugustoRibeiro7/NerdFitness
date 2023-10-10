@@ -16,7 +16,7 @@ public class PessoaDao {
         populaPessoas();
     }
     
-    public void populaPessoas()
+    private void populaPessoas()
     {
         Pessoa p1 = new Pessoa();
         p1.setNome("Harry");
@@ -45,6 +45,7 @@ public class PessoaDao {
     
     
     static Pessoa clientes[] = new Pessoa[10];
+    
     public static void armazenarPessoa(Pessoa p)
     {
         int i;

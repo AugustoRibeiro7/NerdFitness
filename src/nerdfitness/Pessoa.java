@@ -39,7 +39,7 @@ public class Pessoa {
         this.id = Pessoa.quant_pessoas;
         
         //data de criação
-        this.dataCriacao = LocalDate.now();
+         setDataCriacao(LocalDate.now());
      }         
      
      //GET PARA PEGAR O ID
@@ -54,6 +54,11 @@ public class Pessoa {
         return quant_pessoas;
     }
     
+    //Atualizar data de modificação
+    private void atualizarDataModificacao() {
+        this.dataModificacao = LocalDate.now();
+    }
+    
     //GETS E SETS DAS VARIAVEIS DE PESSOA
 
     public String getNome() {
@@ -61,6 +66,7 @@ public class Pessoa {
     }
 
     public void setNome(String nome) {
+        atualizarDataModificacao();
         this.nome = nome;
     }
 
@@ -69,6 +75,7 @@ public class Pessoa {
     }
 
     public void setSexo(String sexo) {
+        atualizarDataModificacao();
         this.sexo = sexo;
     }
 
@@ -77,6 +84,7 @@ public class Pessoa {
     }
 
     public void setNascimento(String nascimento) {
+        atualizarDataModificacao();
         this.nascimento = LocalDate.parse(nascimento, dtf);
     }
 
@@ -85,6 +93,7 @@ public class Pessoa {
     }
 
     public void setLogin(String login) {
+        atualizarDataModificacao();
         this.login = login;
     }
 
@@ -93,6 +102,7 @@ public class Pessoa {
     }
 
     public void setSenha(String senha) {
+        atualizarDataModificacao();
         this.senha = senha;
     }
 
@@ -101,6 +111,7 @@ public class Pessoa {
     }
 
     public void setTipoUsuario(String tipoUsuario) {
+        atualizarDataModificacao();
         this.tipoUsuario = tipoUsuario;
     }
 
@@ -109,15 +120,12 @@ public class Pessoa {
     }
 
     public void setDataCriacao(LocalDate dataCriacao) {
+        atualizarDataModificacao();
         this.dataCriacao = dataCriacao;
     }
 
     public LocalDate getDataModificacao() {
         return dataModificacao;
-    }
-
-    public void setDataModificacao(LocalDate dataModificacao) {
-        this.dataModificacao = dataModificacao;
     }
     
     
