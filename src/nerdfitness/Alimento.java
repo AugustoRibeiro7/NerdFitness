@@ -21,6 +21,7 @@ public class Alimento {
     private int porcao;
     private LocalDate dataCriacao;
     private LocalDate datamod;
+    static Alimento BancoDeAlimento[] = new Alimento[1000];
     
     
     
@@ -30,7 +31,7 @@ public class Alimento {
     {
         this.dataCriacao = LocalDate.now();
         this.nome = nome;
-        this.porcao = 100;
+        this.porcao = porcao;
         this.proteina = proteina;
         this.carboidrato = carboidrato;
         this.gordura = gordura;    
@@ -38,6 +39,10 @@ public class Alimento {
         this.calorias = ((this.gordura*9)+(this.proteina*4)+(this.carboidrato*4))*porcao;
         //Contador de alimentos adicionadps( Id ) 
         this.idalimento++;
+        
+        //Adicionar alimentos
+        BancoDeAlimento[idalimento]=this;
+        
            
     }
     //Atualizar data de modificação
@@ -87,6 +92,17 @@ public class Alimento {
     public void setCalorias(int calorias) {
         this.calorias = calorias;
         atualizarData();
+    }
+    
+    
+    //Imprimir lista de alimentos
+    
+    public void imprimirAlimentos()
+    {
+        for(int cont =0 ; cont <=  idalimento;cont++)
+        {
+            System.out.println("Nome: ");
+        }
     }
     
  
