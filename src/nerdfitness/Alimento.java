@@ -18,6 +18,7 @@ public class Alimento {
     private int carboidrato;
     private int gordura;
     private int calorias;
+    private int porcao;
     private LocalDate dataCriacao;
     private LocalDate datamod;
     
@@ -25,15 +26,16 @@ public class Alimento {
     
     
     //Contrutor do alimento testandp
-    public Alimento (String nome,int proteina, int carboidrato, int gordura)
+    public Alimento (String nome,int proteina, int carboidrato, int gordura,int porcao)
     {
         this.dataCriacao = LocalDate.now();
         this.nome = nome;
+        this.porcao = 100;
         this.proteina = proteina;
         this.carboidrato = carboidrato;
         this.gordura = gordura;    
         //Calculo de caloria do alimento
-        this.calorias = ((this.gordura*9)+(this.proteina*4)+(this.carboidrato*4));
+        this.calorias = ((this.gordura*9)+(this.proteina*4)+(this.carboidrato*4))*porcao;
         //Contador de alimentos adicionadps( Id ) 
         this.idalimento++;
            
