@@ -4,6 +4,9 @@
  */
 package nerdfitness;
 
+import Interface.Interface;
+import Classes.PessoaDao;
+
 /**
  *
  * @author gutom

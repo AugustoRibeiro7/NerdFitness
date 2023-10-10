@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package nerdfitness;
+package Classes;
+
+import Classes.Pessoa;
 
 /**
  *
@@ -44,7 +46,7 @@ public class PessoaDao {
     }
     
     
-    static Pessoa clientes[] = new Pessoa[10];
+    private static Pessoa clientes[] = new Pessoa[10];
     
     public static void armazenarPessoa(Pessoa p)
     {
@@ -57,4 +59,32 @@ public class PessoaDao {
             System.out.println("Espaço cheio");
                     
     }
+    
+    
+    public static int verifica_usuario(String login, String senha)
+    {
+        /*
+        laço sem codigo pois ele segue a logica de rodar se o nome for diferente do
+        vetor que armazena a informação, então se for igual, o laço para e ele é pego pelo if,
+        ja se nao for, ele roda ate o final e retorna false
+        */
+        
+        int i;
+        for(i=0; PessoaDao.clientes[i] != null && !login.equals(PessoaDao.clientes[i].getLogin()) && i < PessoaDao.clientes.length; i++){}
+        
+        if (PessoaDao.clientes[i] != null)
+        {
+            if(login.equals(PessoaDao.clientes[i].getLogin()))
+            {
+                if(senha.equals(PessoaDao.clientes[i].getSenha()))
+                {
+                    return 2;
+                }
+                return 1;
+            }
+        }
+        return 0;
+    }
 }
+
+  

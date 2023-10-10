@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package nerdfitness;
+package Classes;
 
 /**
  *
  * @author Alunos
  */
-rroz = new Alimento("Arroz", 2, 45, 1, 100);
+        Alimento Arroz = new Alimento("Arroz", 2, 45, 1, 100);
         Alimento feijao = new Alimento("Feijão", 7, 20, 1, 100);
         Alimento batata = new Alimento("Batata", 2, 20, 0, 100);
         Alimento macarrão = new Alimento("Macarrão", 12, 25, 2, 100);
@@ -68,7 +68,11 @@ rroz = new Alimento("Arroz", 2, 45, 1, 100);
                     
     }
 
-}public class AlimentoDao {
+}
+
+import Classes.Alimento;
+
+public class AlimentoDao {
     
     
     //Adiconar Alimentos
