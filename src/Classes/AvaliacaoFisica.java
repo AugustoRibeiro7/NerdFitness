@@ -8,9 +8,11 @@ package Classes;
  *
  * @author Alunos
  */
+//teste
 public class AvaliacaoFisica {
     private int id;
     private String pessoa;
+    private String nome;
     
     
     
