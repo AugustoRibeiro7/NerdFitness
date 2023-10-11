@@ -13,6 +13,10 @@ public class Refeicao {
     private double almoco;
     private double janta;
     private double outros;
+    private int proteina;
+    private int carboidrato;
+    private int gordura;
+    private int caloriasTotal;
     
     public Refeicao(Dieta dieta)
     {
