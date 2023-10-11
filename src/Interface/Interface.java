@@ -72,7 +72,7 @@ public class Interface {
                            ==Bem vindo a sua Avaliação Fisica==
                              \n Forneça as seguintes informações:
                                                              """);
-        System.out.print("Idade: ");
+        System.out.print("IdadeA: ");
         
         System.out.print("Peso: ");
         

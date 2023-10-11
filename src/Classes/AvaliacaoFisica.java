@@ -88,3 +88,5 @@ public class AvaliacaoFisica {
     
     
 }
+
+//GETERS E SETERS
