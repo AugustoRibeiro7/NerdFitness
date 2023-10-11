@@ -26,7 +26,7 @@ public class Interface {
     
     
     
-    
+    //METODO PARA CRIAR PESSOAS
     public void criaPessoa()
     {
         //cria o novo usuario
@@ -35,7 +35,7 @@ public class Interface {
         System.out.print("Nome: ");
         p.setNome(scan.nextLine());  
         
-        System.out.print("Sexo: ");
+        System.out.print("Sexo (masc ou fem): ");
         p.setSexo(scan.nextLine());
             
         System.out.print("Data de nascimento: ");
@@ -65,6 +65,29 @@ public class Interface {
         
     }
     
+    //METODO PARA GERAR A AVALIAÇÃO FISICA
+    private void avaliacao_fisica()
+    {
+        System.out.println("""
+                           ==Bem vindo a sua Avaliação Fisica==
+                             \n Forneça as seguintes informações:
+                                                             """);
+        System.out.print("Idade: ");
+        
+        System.out.print("Peso: ");
+        
+        System.out.print("Altura: ");
+        
+        System.out.print("Pescoço: ");
+        
+        System.out.print("Cintura: ");
+        
+        System.out.print("Quadril: ");
+    }
+    
+    
+    
+    //METODO PARA RODAR A INTERFACE DA PLATAFORMA
     private void tela_inicial()
     {
         int x;
