@@ -16,6 +16,11 @@ public class Dieta {
     private int proteina;
     private int gordura;
     private Double imc;
+    private Double caloriasdietatotal;
+    private double cafe;
+    private double almoco;
+    private double janta;
+    private double outros;
     //Adicionar data de Criação e modificação  
     
     //Contrutor da dieta
@@ -35,24 +40,46 @@ public class Dieta {
 
             }
             
+            //cases da dieta
+            
             //ATRIBUTOS REFERENTE A PESSOA
             nome = pessoa.getNome();
             
             
             //ATRIBUTOS REFERENTE A AVALIAÇÃO FISICCA
-            //imc= avaliacao.imc()
+            imc= avaliacao.getIMC();
+            
+            
+            //CALCULO DA DIETA
+            
+            if(this.tipo=="MANTER O PESO")
+            {
+                caloriasdietatotal = avaliacao.getTMB();
+                
+            }
+            
+            if(this.tipo == "DIMINUIR O PESO")
+            {
+                caloriasdietatotal = avaliacao.getTMB()-500;
+                
+            }
+            
+            if(this.tipo == "AUMENTAR O PESO")
+            {
+                caloriasdietatotal = avaliacao.getTMB()+500;
+            }
             
             
             
+            //PERGUNTAR AO EDUARDO SOBRE A MELHORA DE COMPOSIÇÃO CORPORAL if(this.tipo=="MELHORAR COMPOSIÇÃO CORPORAL")
             
+            //Definindo limites de KCAL para cada refeicao
             
-            
-            
-            
-            //ATRIBUTOS REFERENTE A AVALIACAO FISICA
-        
-
-        
+                cafe = (caloriasdietatotal * 0.25);
+                almoco = (caloriasdietatotal * 0.35);
+                janta = (caloriasdietatotal * 0.25);
+                outros = (caloriasdietatotal * 0.25);
+                
         }
     
     
