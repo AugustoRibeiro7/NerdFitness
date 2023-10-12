@@ -43,7 +43,7 @@ public class Interface {
         System.out.print("Data de nascimento (dd/MM/yyyy): ");
         p.setNascimento(scan.nextLine());
         
-        System.out.print("Login: ");
+        System.out.print("Usuario: ");
         p.setLogin(scan.nextLine());
 
         System.out.print("Senha: ");
@@ -97,8 +97,8 @@ public class Interface {
                            3 - moderadamente ativo (exercício moderado 6 a 7 dias por semana)
                            4 - muito ativo (exercício intenso todos os dias ou exercício duas vezes ao dia)
                            5 - extra ativo (exercício muito difícil, treinamento ou trabalho físico)
-                           Escolha a opcao..: 
-                           """);
+                         
+                           Escolha a opcao..: """);
         int taxa = Integer.parseInt(scan.nextLine());
         
         //criar objeto ja recebendo todos os valores no construtor
@@ -121,12 +121,13 @@ public class Interface {
                            Login (0) 
                            Cadastrar (1)
                            Fechar programa (2)
+                             
                              Escolha sua opcao: """);
             x = Integer.parseInt(scan.nextLine());
 
             switch (x) {
                 case 0:
-                    System.out.print("Login: ");
+                    System.out.print("usuario: ");
                     String user = scan.nextLine();
                     
                     System.out.print("Senha: ");
@@ -143,15 +144,18 @@ public class Interface {
                         System.out.println("Usuário Logado!");
                         
                         //recebendo usuario logado
-                        Pessoa usuario_log = PessoaDao.getClientes(i);
+                        Pessoa usuario_log = PessoaDao.getClientes(i); 
                         
                         int opc;
                         do
                         {
+                            System.out.println("=====NERDFITNESS===== \n");
+                            
                             System.out.print("""
                            Avaliação Fisica (0) 
                            Gerar Dieta (1)
                            Sair da conta (2)
+                                             
                             Escolha sua opcao: """);
                             opc = Integer.parseInt(scan.nextLine());
                             

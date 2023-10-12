@@ -21,11 +21,11 @@ public class PessoaDao {
     private void populaPessoas()
     {
         Pessoa p1 = new Pessoa();
-        p1.setNome("Harry");
-        p1.setLogin("Potter");
+        p1.setNome("Admin");
+        p1.setLogin("adm");
+        p1.setSenha("123");
         p1.setNascimento("20/05/2000");
         p1.setSexo("masculino");
-        p1.setSenha("934");
         armazenarPessoa(p1);
         
         Pessoa p2 = new Pessoa();
