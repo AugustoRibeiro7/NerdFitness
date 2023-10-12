@@ -47,6 +47,12 @@ public class PessoaDao {
     
     
     private static Pessoa clientes[] = new Pessoa[10];
+
+    public static Pessoa getClientes(int i) {
+        return clientes[i];
+    }
+    
+    
     
     public static void armazenarPessoa(Pessoa p)
     {
@@ -78,9 +84,9 @@ public class PessoaDao {
             {
                 if(senha.equals(PessoaDao.clientes[i].getSenha()))
                 {
-                    return 2;
+                    return i;
                 }
-                return 1;
+                return -1;
             }
         }
         return 0;

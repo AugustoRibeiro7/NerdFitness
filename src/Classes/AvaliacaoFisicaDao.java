@@ -9,5 +9,19 @@ package Classes;
  * @author gutom
  */
 public class AvaliacaoFisicaDao {
+    //pegar id da pessoa logada
     
+    //vetor DAO
+    private static AvaliacaoFisica Avaliacoes[] = new AvaliacaoFisica[10];
+    
+    //get vetor DAO
+    public static AvaliacaoFisica getClientes(int i) {
+        return Avaliacoes[i];
+    }
+    
+    //MÉTODO PARA ARMAZENAR NO VETOR
+    public static void armazenaDao(int id_pessoa, AvaliacaoFisica avaliacao)
+    {
+        AvaliacaoFisicaDao.Avaliacoes[id_pessoa] = avaliacao;
+    }
 }
