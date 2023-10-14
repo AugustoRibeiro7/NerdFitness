@@ -275,7 +275,7 @@ public class Refeicao {
         this.refeicao = refeicao;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

@@ -17,7 +17,7 @@ public class RefeicaoDAO {
     {
         //AvaliacaoFisicaDao.Avaliacoes[id_pessoa] = avaliacao;
         //Bucar o erro do tipo 
-        RefeicaoDAO.bd_refeicao[id] = r;
+        RefeicaoDAO.bd_refeicao[r.getId()] = r;
     }
            
     
