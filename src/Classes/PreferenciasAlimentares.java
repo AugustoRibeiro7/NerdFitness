@@ -4,11 +4,14 @@
  */
 package Classes;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Lukas
  */
 public class PreferenciasAlimentares {
+    private int id;
     
     private Alimento[] fontesProteina;
     private Alimento[] fontesCarboidrato;
@@ -16,10 +19,15 @@ public class PreferenciasAlimentares {
     private int contadorProteina;
     private int contadorCarboidrato;
     private int contadorGordura;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
     
     private int tamanhoMaximo = 10;
 
     public PreferenciasAlimentares(int tamanhoMaximo) {
+        //data de criação
+         setDataCriacao(LocalDate.now());
+         
         fontesProteina = new Alimento[tamanhoMaximo];
         fontesCarboidrato = new Alimento[tamanhoMaximo];
         fontesGordura = new Alimento[tamanhoMaximo];
@@ -28,8 +36,13 @@ public class PreferenciasAlimentares {
         contadorGordura = 0;
     }
 
+    //Atualizar data de modificação
+    private void atualizarDataModificacao() {
+        this.dataModificacao = LocalDate.now();
+    }
 
     public void adicionarAlimento(Alimento alimento) {
+        atualizarDataModificacao();
         if (alimento.getProteina() >= alimento.getCarboidrato() && alimento.getProteina() >= alimento.getGordura()) {
             adicionarAlimentoFonteProteina(alimento);
         } else if (alimento.getCarboidrato() >= alimento.getProteina() && alimento.getCarboidrato() >= alimento.getGordura()) {
@@ -41,6 +54,7 @@ public class PreferenciasAlimentares {
 
     // Métodos para adicionar alimentos nas fontes de proteína, carboidrato e gordura
     public void adicionarAlimentoFonteProteina(Alimento alimento) {
+        atualizarDataModificacao();
         if (contadorProteina < fontesProteina.length) {
             fontesProteina[contadorProteina] = alimento;
             contadorProteina++;
@@ -48,6 +62,7 @@ public class PreferenciasAlimentares {
     }
 
     public void adicionarAlimentoFonteCarboidrato(Alimento alimento) {
+        atualizarDataModificacao();
         if (contadorCarboidrato < fontesCarboidrato.length) {
             fontesCarboidrato[contadorCarboidrato] = alimento;
             contadorCarboidrato++;
@@ -55,6 +70,7 @@ public class PreferenciasAlimentares {
     }
 
     public void adicionarAlimentoFonteGordura(Alimento alimento) {
+        atualizarDataModificacao();
         if (contadorGordura < fontesGordura.length) {
             fontesGordura[contadorGordura] = alimento;
             contadorGordura++;
@@ -94,6 +110,26 @@ public class PreferenciasAlimentares {
             System.out.println();
         }
     }
-    
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
+    }
+
+    private void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public LocalDate getDataModificacao() {
+        return dataModificacao;
+    }
+
+        
 }

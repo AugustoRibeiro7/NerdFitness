@@ -14,7 +14,7 @@ import java.time.Period;
  */
 public class AvaliacaoFisica {
     
-    // ID E QUANTIDADE DE CONTAS
+    // ID E QUANTIDADE DE AVALIAÇÕES
     private static long quant_pessoas;
     private long id;
     

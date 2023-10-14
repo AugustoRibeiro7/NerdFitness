@@ -12,7 +12,11 @@ import java.util.ArrayList;
  * @author Lukas
  */
 public class Alimento {
-    static int idalimento;
+    
+    // ID E QUANTIDADE DE ALIMENTOS
+    private static int quant_alimentos;
+    private int id;
+    
     private String nome;
     private int proteina;
     private int carboidrato;
@@ -29,6 +33,10 @@ public class Alimento {
     //Contrutor do alimento testandp
     public Alimento (String nome,int proteina, int carboidrato, int gordura,int porcao)
     {
+        //controle do id
+         Alimento.quant_alimentos++;
+        this.id = Alimento.quant_alimentos;
+        
         this.dataCriacao = LocalDate.now();
         this.nome = nome;
         this.porcao = porcao;
@@ -37,11 +45,10 @@ public class Alimento {
         this.gordura = gordura;    
         //Calculo de caloria do alimento
         this.calorias = ((this.gordura*9)+(this.proteina*4)+(this.carboidrato*4))*porcao;
-        //Contador de alimentos adicionadps( Id ) 
-        this.idalimento++;
+       
         
         //Adicionar alimentos
-        BancoDeAlimento[idalimento]=this;
+        BancoDeAlimento[id]=this;
         
            
     }
@@ -72,12 +79,26 @@ public class Alimento {
     public int getCalorias() {
         return calorias;
     }
+    
+      public int getId() {
+        return id;
+    }
 
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public LocalDate getDatamod() {
+        return datamod;
+    }
+
+    //setters
+    
     public void setProteina(int proteina) {
+        atualizarData();
         this.proteina = proteina;
     }
     
-    //setters
 
     public void setCarboidrato(int carboidrato) {
         this.carboidrato = carboidrato;
@@ -95,11 +116,13 @@ public class Alimento {
     }
     
     
+    
+    
     //Imprimir lista de alimentos
     
     public void imprimirAlimentos()
     {
-        for(int cont =0 ; cont <=  idalimento;cont++)
+        for(int cont =0 ; cont <=  id; cont++)
         {
             System.out.println("Nome: ");
         }

@@ -12,7 +12,7 @@ import java.time.LocalDate;
  */
 public class Dieta {
     
-    // ID E QUANTIDADE DE CONTAS
+    // ID E QUANTIDADE DE DIETAS
     private int id;
     private static int quant_dieta;
     
@@ -171,7 +171,7 @@ public class Dieta {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
+    private void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
         atualizarDataModificacao();
     }
@@ -180,10 +180,6 @@ public class Dieta {
         return dataModificacao;
     }
 
-    public void setDataModificacao(LocalDate dataModificacao) {
-        this.dataModificacao = dataModificacao;
-    }
-    
-    
+ 
     
 }
