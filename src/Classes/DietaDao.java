@@ -16,10 +16,10 @@ public class DietaDao {
        
        
     //Armazenar dieta
-    public static void guardardieta(Dieta dieta)
+    public static void guardardieta(Dieta dieta, int id)
     {
         //AvaliacaoFisicaDao.Avaliacoes[id_pessoa] = avaliacao;
-        DietaDao.bd_dieta[dieta.getId()]=dieta;
+        DietaDao.bd_dieta[id]=dieta;
     }
 
     

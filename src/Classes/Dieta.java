@@ -84,9 +84,7 @@ public class Dieta {
                 caloriasdietatotal = avaliacao.getTMB()+500;
             }
             
-            
-            
-            //PERGUNTAR AO EDUARDO SOBRE A MELHORA DE COMPOSIÇÃO CORPORAL if(this.tipo=="MELHORAR COMPOSIÇÃO CORPORAL")
+            DietaDao.guardardieta(this, (int) pessoa.getId());
             
         
         

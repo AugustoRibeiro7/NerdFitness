@@ -109,6 +109,17 @@ public class Interface {
                 
     }
     
+    private void gerar_dietas()
+    {
+        System.out.println("""
+                           Digite o objetivo da sua dieta entre as opções:"
+                            DIMINUIR O PESO
+                            MANTER O PESO
+                            AUMENTAR O PESO
+                            Digite aqui: """);
+        String objetivo = scan.nextLine();
+    }
+    
     
     
     //METODO PARA RODAR A INTERFACE DA PLATAFORMA
