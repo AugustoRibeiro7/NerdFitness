@@ -8,6 +8,6 @@ package Classes;
  *
  * @author Lukas
  */
-public class AlimentoDao {
+public class DietaDao {
     
 }
