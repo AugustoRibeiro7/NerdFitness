@@ -4,24 +4,41 @@
  */
 package Classes;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Lukas
  */
 public class Dieta {
+    
+    // ID E QUANTIDADE DE CONTAS
+    private int id;
+    private static int quant_dieta;
+    
+    //atributos dieta
     private String tipo;
-    private int idDieta;
+
     private String nome;
     private int carboidrato;
     private int proteina;
     private int gordura;
     private Double imc;
     private Double caloriasdietatotal;
+    private LocalDate dataCriacao;
+     private LocalDate dataModificacao;
 
     //Adicionar data de Criação e modificação  
     
     //Contrutor da dieta
     public Dieta(String tipo, Pessoa pessoa,AvaliacaoFisica avaliacao){
+        
+        //controle do id
+         Dieta.quant_dieta++;
+        this.id = Dieta.quant_dieta;
+        
+        //data de criação
+         setDataCriacao(LocalDate.now());
         
         //ATRIBUTOS REFERENTE A DIETA
         
@@ -76,28 +93,32 @@ public class Dieta {
     
     
     }
+    
+    //Atualizar data de modificação
+    private void atualizarDataModificacao() {
+        this.dataModificacao = LocalDate.now();
+    }
 
     public String getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
+        atualizarDataModificacao();
         this.tipo = tipo;
     }
 
-    public int getIdDieta() {
-        return idDieta;
+    public int getId() {
+        return id;
     }
 
-    public void setIdDieta(int idDieta) {
-        this.idDieta = idDieta;
-    }
 
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
+        atualizarDataModificacao();
         this.nome = nome;
     }
 
@@ -106,6 +127,7 @@ public class Dieta {
     }
 
     public void setCarboidrato(int carboidrato) {
+        atualizarDataModificacao();
         this.carboidrato = carboidrato;
     }
 
@@ -114,6 +136,7 @@ public class Dieta {
     }
 
     public void setProteina(int proteina) {
+        atualizarDataModificacao();
         this.proteina = proteina;
     }
 
@@ -122,6 +145,7 @@ public class Dieta {
     }
 
     public void setGordura(int gordura) {
+        atualizarDataModificacao();
         this.gordura = gordura;
     }
 
@@ -130,6 +154,7 @@ public class Dieta {
     }
 
     public void setImc(Double imc) {
+        atualizarDataModificacao();
         this.imc = imc;
     }
 
@@ -139,6 +164,26 @@ public class Dieta {
 
     public void setCaloriasdietatotal(Double caloriasdietatotal) {
         this.caloriasdietatotal = caloriasdietatotal;
+        atualizarDataModificacao();
     }
+
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
+        atualizarDataModificacao();
+    }
+
+    public LocalDate getDataModificacao() {
+        return dataModificacao;
+    }
+
+    public void setDataModificacao(LocalDate dataModificacao) {
+        this.dataModificacao = dataModificacao;
+    }
+    
+    
     
 }
