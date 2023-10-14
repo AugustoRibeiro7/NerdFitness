@@ -10,4 +10,18 @@ package Classes;
  */
 public class DietaDao {
     
+       //Armazenador de alimentos
+       private static Dieta bd_dieta[] = new Dieta[10];
+       
+       
+       
+    //Armazenar dieta
+    public static void guardardieta(Dieta dieta)
+    {
+        //AvaliacaoFisicaDao.Avaliacoes[id_pessoa] = avaliacao;
+        DietaDao.bd_dieta[dieta.getId()]=dieta;
+    }
+
+    
+    
 }

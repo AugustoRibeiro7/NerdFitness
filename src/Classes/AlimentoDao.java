@@ -10,4 +10,21 @@ package Classes;
  */
 public class AlimentoDao {
     
+    
+    //Armazenador de alimentos
+       private static Alimento bd_alimento[] = new Alimento[10];
+       
+       
+       
+    //Armazenar alimento
+    public static void guardarAlimentos(Alimento alimento)
+    {
+        //AvaliacaoFisicaDao.Avaliacoes[id_pessoa] = avaliacao;
+        AlimentoDao.bd_alimento[alimento.getId()]=alimento;
+    }
+
+    
 }
+
+
+
