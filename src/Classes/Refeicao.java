@@ -13,8 +13,8 @@ import java.time.LocalDate;
 public class Refeicao {
     
     // ID E QUANTIDADE DE REFEIÇÕES
-    private static long quant_refeicao;
-    private long id;
+    private static int quant_refeicao;
+    private int id;     
     
     
     //variaveis
@@ -244,6 +244,9 @@ public class Refeicao {
         atualizarDataModificacao();
         this.carboidrato = carboidrato;
     }
+    
+    
+    
 
     public int getGordura() {
         return gordura;
