@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Interface;
+package interface_;
 
-import Classes.AvaliacaoFisica;
-import Classes.AvaliacaoFisicaDao;
-import Classes.Dieta;
-import Classes.DietaDao;
-import Classes.PessoaDao;
-import Classes.Pessoa;
+import classes.AvaliacaoFisica;
+import classes.AvaliacaoFisicaDao;
+import classes.Dieta;
+import classes.DietaDao;
+import classes.PessoaDao;
+import classes.Pessoa;
 
 import java.util.Scanner;
 

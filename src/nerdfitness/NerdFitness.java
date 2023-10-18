@@ -4,8 +4,8 @@
  */
 package nerdfitness;
 
-import Interface.Interface;
-import Classes.PessoaDao;
+import interface_.Interface;
+import classes.PessoaDao;
 
 /**
  *
