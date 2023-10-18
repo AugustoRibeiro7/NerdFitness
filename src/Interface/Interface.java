@@ -6,17 +6,18 @@ package Interface;
 
 import Classes.AvaliacaoFisica;
 import Classes.AvaliacaoFisicaDao;
+import Classes.Dieta;
+import Classes.DietaDao;
 import Classes.PessoaDao;
 import Classes.Pessoa;
 
 import java.util.Scanner;
 
 
-/**
- *
- * @author gutom
- */
+
 public class Interface {
+    
+    //scan para receber os dados
     Scanner scan = new Scanner(System.in);
     
     //construtor
@@ -28,7 +29,7 @@ public class Interface {
     
     
     
-    //METODO PARA CRIAR PESSOAS
+    // ====== METODO PARA CRIAR PESSOAS ==========
     public void criaPessoa()
     {
         //cria o novo usuario
@@ -42,6 +43,9 @@ public class Interface {
             
         System.out.print("Data de nascimento (dd/MM/yyyy): ");
         p.setNascimento(scan.nextLine());
+        
+        System.out.print("Tipo de usuário (atleta ou comum): ");
+        p.setTipoUsuario(scan.nextLine());
         
         System.out.print("Usuario: ");
         p.setLogin(scan.nextLine());
@@ -67,7 +71,7 @@ public class Interface {
         
     }
     
-    //METODO PARA GERAR A AVALIAÇÃO FISICA
+    // ===== METODO PARA GERAR A AVALIAÇÃO FISICA ==============
     private void avaliacao_fisica(Pessoa usuario)
     {
         System.out.println("""
@@ -109,7 +113,9 @@ public class Interface {
                 
     }
     
-    private void gerar_dietas()
+    //=========== DIETAS ================
+    
+    private void calculo_dieta(Pessoa pessoa, AvaliacaoFisica avaliacao)
     {
         System.out.println("""
                            Digite o objetivo da sua dieta entre as opções:"
@@ -118,11 +124,47 @@ public class Interface {
                             AUMENTAR O PESO
                             Digite aqui: """);
         String objetivo = scan.nextLine();
+        
+        int tipo;
+        do
+        {
+            System.out.println("""
+                           Digite o objetivo da sua dieta entre as opções:"
+                            1 - EQUILIBRADA
+                            2- LOW CARB
+                            3 - CETOGÊNICA
+                            Digite aqui: """);
+            tipo = Integer.parseInt(scan.nextLine());
+            
+        }while(tipo > 3 || tipo < 1);
+        
+        System.out.print("Quantas refeições por dia voce gostaria de fazer..: ");
+        int quant_refeicoes = Integer.parseInt(scan.nextLine());
+        
+        //CRIAR OBJETO DIETA
+        Dieta dieta = new Dieta(objetivo, tipo, pessoa, avaliacao, quant_refeicoes);
+    }
+    
+    private void preferencias()
+    {
+        
+    }
+    
+    private void calculo_refeicao()
+    {
+        
+    }
+    
+    
+    private void gerar_dietas(Pessoa pessoa, AvaliacaoFisica avaliacao)
+    {
+        calculo_dieta(pessoa, avaliacao);
+        
     }
     
     
     
-    //METODO PARA RODAR A INTERFACE DA PLATAFORMA
+    //==== METODO PARA RODAR A INTERFACE DA PLATAFORMA =================
     private void tela_inicial()
     {
         int x;
@@ -175,13 +217,16 @@ public class Interface {
                                     avaliacao_fisica(usuario_log);
                                     break;
                                 case 1:
-                                    if(AvaliacaoFisicaDao.getClientes((int) usuario_log.getId()) == null)
+                                    if(AvaliacaoFisicaDao.getAvaliacoes((int) usuario_log.getId()) == null)
                                     {
                                         System.out.println("Erro! Realize a Avaliacao Fisica primeiro.");
                                     }
                                     else
                                     {
                                         System.out.println("Dieta Gerada!");
+                                        gerar_dietas(usuario_log, AvaliacaoFisicaDao.getAvaliacoes((int) usuario_log.getId()));
+                                        
+                                        
                                     }
                                     break;
                                 case 2:

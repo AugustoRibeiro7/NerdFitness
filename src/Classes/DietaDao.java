@@ -22,6 +22,11 @@ public class DietaDao {
         DietaDao.bd_dieta[id]=dieta;
     }
 
+    //get vetor DAO
+    public static Dieta getDietas(int i) {
+        return bd_dieta[i];
+    }
+    
     
     
 }

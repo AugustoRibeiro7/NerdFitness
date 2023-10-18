@@ -17,21 +17,24 @@ public class Dieta {
     private static int quant_dieta;
     
     //atributos dieta
-    private String tipo;
+    private String objetivo;
+    private int numRefeicoes;
 
-    private String nome;
+    private String nome; //tipo
     private int carboidrato;
     private int proteina;
     private int gordura;
     private Double imc;
     private Double caloriasdietatotal;
+    
+    //data de Criação e modificação  
     private LocalDate dataCriacao;
-     private LocalDate dataModificacao;
+    private LocalDate dataModificacao;
 
-    //Adicionar data de Criação e modificação  
+    
     
     //Contrutor da dieta
-    public Dieta(String tipo, Pessoa pessoa,AvaliacaoFisica avaliacao){
+    public Dieta(String objetivo, int tipo, Pessoa pessoa,AvaliacaoFisica avaliacao, int num_Refeicoes){
         
         //controle do id
          Dieta.quant_dieta++;
@@ -45,9 +48,9 @@ public class Dieta {
         
         // Loop infinito
         for (; ; ) {  
-            if (tipo.equals("DIMINUIR O PESO") || tipo.equals("MANTER O PESO") ||
-                tipo.equals("MELHORAR COMPOSIÇÃO CORPORAL") || tipo.equals("AUMENTAR O PESO")) {
-                this.tipo = tipo;  // Atribui o tipo válido
+            if (objetivo.equals("DIMINUIR O PESO") || objetivo.equals("MANTER O PESO") ||
+                objetivo.equals("MELHORAR COMPOSIÇÃO CORPORAL") || objetivo.equals("AUMENTAR O PESO")) {
+                this.objetivo = objetivo;  // Atribui o tipo válido
                 break;  // Sai do loop quando o tipo é válido
             } else {
                 System.out.println("TIPO INVÁLIDO");
@@ -55,40 +58,43 @@ public class Dieta {
             }
         }
             
-            //cases da dieta
+        //cases da dieta
+
+        //ATRIBUTOS REFERENTE A PESSOA
+        nome = pessoa.getNome();
+
+
+        //ATRIBUTOS REFERENTE A AVALIAÇÃO FISICCA
+        imc= avaliacao.getIMC();
+
+
+        //CALCULO DA DIETA
+
+        if("MANTER O PESO".equals(this.objetivo))
+        {
+            caloriasdietatotal = avaliacao.getTMB();
+
+        }
+
+        if("DIMINUIR O PESO".equals(this.objetivo))
+        {
+            caloriasdietatotal = avaliacao.getTMB()-500;
+
+        }
+
+        if("AUMENTAR O PESO".equals(this.objetivo))
+        {
+            caloriasdietatotal = avaliacao.getTMB()+500;
+        }
             
-            //ATRIBUTOS REFERENTE A PESSOA
-            nome = pessoa.getNome();
-            
-            
-            //ATRIBUTOS REFERENTE A AVALIAÇÃO FISICCA
-            imc= avaliacao.getIMC();
-            
-            
-            //CALCULO DA DIETA
-            
-            if(this.tipo=="MANTER O PESO")
-            {
-                caloriasdietatotal = avaliacao.getTMB();
-                
-            }
-            
-            if(this.tipo == "DIMINUIR O PESO")
-            {
-                caloriasdietatotal = avaliacao.getTMB()-500;
-                
-            }
-            
-            if(this.tipo == "AUMENTAR O PESO")
-            {
-                caloriasdietatotal = avaliacao.getTMB()+500;
-            }
-            
-            DietaDao.guardardieta(this, (int) pessoa.getId());
-            
+        //CHAMAR METODO TIPO DE DIETA
+        tipoDieta(tipo);
         
+        //SETAR NUMERO DE REFEIÇÕES
+        setNumRefeicoes(num_Refeicoes);
         
-    
+        //GUARDAR DIETA NA MEMORIA DAO
+        DietaDao.guardardieta(this, (int) pessoa.getId());
     
     }
     
@@ -97,15 +103,16 @@ public class Dieta {
         this.dataModificacao = LocalDate.now();
     }
 
-    public String getTipo() {
-        return tipo;
+    //getters and setters
+
+    public String getObjetivo() {
+        return objetivo;
     }
 
-    public void setTipo(String tipo) {
-        atualizarDataModificacao();
-        this.tipo = tipo;
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
     }
-
+    
     public int getId() {
         return id;
     }
@@ -178,6 +185,43 @@ public class Dieta {
         return dataModificacao;
     }
 
- 
+    public int getNumRefeicoes() {
+        return numRefeicoes;
+    }
+
+    private void setNumRefeicoes(int numRefeicoes) {
+        this.numRefeicoes = numRefeicoes;
+    }
+    
+    
+
+    //METODO TIPO DE DIETA
+    private void tipoDieta(int tipo)
+    {
+        switch (tipo) {
+            case 1:
+                this.nome = "EQUILIBRADA";
+                this.carboidrato = 40;
+                this.proteina = 30;
+                this.gordura = 30;
+                
+                break;
+            case 2:
+                this.nome = "LOW CARB";
+                this.carboidrato = 30;
+                this.proteina = 50;
+                this.gordura = 20;
+                
+                break;
+            case 3:
+                this.nome = "CETOGÊNICA";
+                this.carboidrato = 15;
+                this.proteina = 15;
+                this.gordura = 70;
+                
+                break;
+        }
+    }
+    
     
 }

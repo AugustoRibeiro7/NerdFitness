@@ -272,7 +272,7 @@ public class AvaliacaoFisica {
         System.out.println(toString());
         if(this.idade <= 29)
         {
-            if(this.usuario.getSexo() == "masc")
+            if("masc".equals(this.usuario.getSexo()))
             { 
                 if("atleta".equals(usuario.getTipoUsuario()))
                 {
@@ -296,8 +296,7 @@ public class AvaliacaoFisica {
                     System.out.println(elevado);
                 else if(this.BF > 23)
                     System.out.println(muito_elevado);
-                
-                
+                 
             }
             else
             {
@@ -327,7 +326,7 @@ public class AvaliacaoFisica {
         }
         else if(idade <= 39)
         {
-            if(this.usuario.getSexo() == "masc")
+            if("masc".equals(this.usuario.getSexo()))
             { 
                 if("atleta".equals(usuario.getTipoUsuario()))
                 {
@@ -382,7 +381,7 @@ public class AvaliacaoFisica {
         }
         else if(idade <= 49)
         {
-            if(this.usuario.getSexo() == "masc")
+            if("masc".equals(this.usuario.getSexo()))
             { 
                 if("atleta".equals(usuario.getTipoUsuario()))
                 {
@@ -437,7 +436,7 @@ public class AvaliacaoFisica {
         }
         else //a partir de 50
         {
-            if(this.usuario.getSexo() == "masc")
+            if("masc".equals(this.usuario.getSexo()))
             { 
                 if("atleta".equals(usuario.getTipoUsuario()))
                 {
