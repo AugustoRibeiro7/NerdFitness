@@ -6,6 +6,7 @@ package nerdfitness;
 
 import interface_.Interface;
 import classes.PessoaDao;
+import classes.AlimentoDao;
 
 /**
  *
@@ -18,15 +19,18 @@ public class NerdFitness {
     // CONSTRUTOR PARA RODAR O CODIGO
     public NerdFitness() {
         
+        //POPULANDO DADOS
         new PessoaDao();
+        new AlimentoDao();
         
-        //método que roda a tela de login/cadastro
+        
+        //testando as pessoas criadas automaticamente pelo PessoaDao
+        //System.out.println(PessoaDao.getClientes(0).getNome());
+        
+        //METODO QUE CHAMA A INTERFACE DO PROGRAMA
         new Interface();
         
-       //testando as pessoas criadas automaticamente pelo PessoaDao
-        //System.out.println(PessoaDao.clientes[0].getNome());
-        //System.out.println(PessoaDao.clientes[1].getNome());
-       // System.out.println(PessoaDao.clientes[2].getNome());
+       
         
         
         

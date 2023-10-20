@@ -18,20 +18,19 @@ public class Alimento {
     private int id;
     
     private String nome;
-    private int proteina;
-    private int carboidrato;
-    private int gordura;
-    private int calorias;
-    private int porcao;
+    private double proteina;
+    private double carboidrato;
+    private double gordura;
+    private double calorias;
+    private int porcao = 100;
     private LocalDate dataCriacao;
     private LocalDate datamod;
-    static Alimento BancoDeAlimento[] = new Alimento[1000];
     
     
     
     
     //Contrutor do alimento testandp
-    public Alimento (String nome,int proteina, int carboidrato, int gordura,int porcao)
+    public Alimento (String nome,double proteina, double carboidrato, double gordura)
     {
         //controle do id
          Alimento.quant_alimentos++;
@@ -39,7 +38,6 @@ public class Alimento {
         
         this.dataCriacao = LocalDate.now();
         this.nome = nome;
-        this.porcao = porcao;
         this.proteina = proteina;
         this.carboidrato = carboidrato;
         this.gordura = gordura;    
@@ -48,7 +46,7 @@ public class Alimento {
        
         
         //Adicionar alimentos
-        BancoDeAlimento[id]=this;
+        AlimentoDao.guardarAlimentos(this);
         
            
     }
@@ -64,19 +62,19 @@ public class Alimento {
 
     }
 
-    public int getProteina() {
+    public double getProteina() {
         return proteina;
     }
 
-    public int getCarboidrato() {
+    public double getCarboidrato() {
         return carboidrato;
     }
 
-    public int getGordura() {
+    public double getGordura() {
         return gordura;
     }
 
-    public int getCalorias() {
+    public double getCalorias() {
         return calorias;
     }
     
@@ -94,23 +92,23 @@ public class Alimento {
 
     //setters
     
-    public void setProteina(int proteina) {
+    public void setProteina(double proteina) {
         atualizarData();
         this.proteina = proteina;
     }
     
 
-    public void setCarboidrato(int carboidrato) {
+    public void setCarboidrato(double carboidrato) {
         this.carboidrato = carboidrato;
         atualizarData();
     }
 
-    public void setGordura(int gordura) {
+    public void setGordura(double gordura) {
         this.gordura = gordura;
         atualizarData();
     }
 
-    public void setCalorias(int calorias) {
+    public void setCalorias(double calorias) {
         this.calorias = calorias;
         atualizarData();
     }

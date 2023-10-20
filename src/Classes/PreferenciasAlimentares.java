@@ -24,10 +24,11 @@ public class PreferenciasAlimentares {
     
     private int tamanhoMaximo = 10;
 
-    public PreferenciasAlimentares(int tamanhoMaximo) {
+    public PreferenciasAlimentares(int tamanhoMaximo, int idUsuario) {
         //data de criação
          setDataCriacao(LocalDate.now());
          
+         this.id = idUsuario;
         fontesProteina = new Alimento[tamanhoMaximo];
         fontesCarboidrato = new Alimento[tamanhoMaximo];
         fontesGordura = new Alimento[tamanhoMaximo];
@@ -81,7 +82,7 @@ public class PreferenciasAlimentares {
     //Metodo para mostrar os alimentos registrados nas preferencias
      public void mostrarAlimentosNasFontes() {
         System.out.println("Fonte de Proteína:");
-        for (int i = 0; i < contadorProteina; i++) {
+        for (int i = 0; fontesProteina[i] != null && i < contadorProteina; i++) {
             Alimento alimento = fontesProteina[i];
             System.out.println("Nome: " + alimento.getNome());
             System.out.println("Proteína: " + alimento.getProteina());
@@ -91,7 +92,7 @@ public class PreferenciasAlimentares {
         }
 
         System.out.println("Fonte de Carboidrato:");
-        for (int i = 0; i < contadorCarboidrato; i++) {
+        for (int i = 0; fontesCarboidrato[i] != null && i < contadorCarboidrato; i++) {
             Alimento alimento = fontesCarboidrato[i];
             System.out.println("Nome: " + alimento.getNome());
             System.out.println("Proteína: " + alimento.getProteina());
@@ -101,7 +102,7 @@ public class PreferenciasAlimentares {
         }
 
         System.out.println("Fonte de Gordura:");
-        for (int i = 0; i < contadorGordura; i++) {
+        for (int i = 0; fontesGordura[i] != null && i < contadorGordura; i++) {
             Alimento alimento = fontesGordura[i];
             System.out.println("Nome: " + alimento.getNome());
             System.out.println("Proteína: " + alimento.getProteina());
