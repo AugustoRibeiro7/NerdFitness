@@ -25,23 +25,26 @@ public class PessoaDao {
         p1.setLogin("adm");
         p1.setSenha("123");
         p1.setNascimento("20/05/2000");
-        p1.setSexo("masculino");
+        p1.setSexo("masc");
+        p1.setTipoUsuario("comum");
         armazenarPessoa(p1);
         
         Pessoa p2 = new Pessoa();
-        p2.setNome("WIsley");
-        p2.setLogin("Carro");
-        p2.setSenha("Voador");
-        p1.setNascimento("01/01/2001");
-        p2.setSexo("feminino");
+        p2.setNome("Luk");
+        p2.setLogin("Dragon");
+        p2.setSenha("peixe");
+        p2.setNascimento("01/01/1985");
+        p2.setSexo("masc");
+        p2.setTipoUsuario("atleta");
         armazenarPessoa(p2);
         
         Pessoa p3 = new Pessoa();
-        p3.setNome("Josoares");
-        p3.setLogin("Jo");
-        p3.setSenha("123");
-        p1.setSexo("masculino");
-        p1.setNascimento("30/12/1995");
+        p3.setNome("Silvia");
+        p3.setLogin("Silvia");
+        p3.setSenha("abc");
+        p3.setSexo("fem");
+        p3.setNascimento("30/12/1995");
+        p3.setTipoUsuario("comum");
         armazenarPessoa(p3);
     }
     
@@ -60,7 +63,10 @@ public class PessoaDao {
         for(i=0; clientes[i] != null; i++){}
         
         if(i < clientes.length)
+        {
+            System.out.println("Usuario cadastrado!");
             clientes[i] = p;
+        }  
         else
             System.out.println("Espaço cheio");
                     
@@ -89,7 +95,7 @@ public class PessoaDao {
                 return -1;
             }
         }
-        return 0;
+        return -2;
     }
 }
 

@@ -4,12 +4,16 @@
  */
 package interface_;
 
+import classes.Alimento;
+import classes.AlimentoDao;
 import classes.AvaliacaoFisica;
 import classes.AvaliacaoFisicaDao;
 import classes.Dieta;
 import classes.DietaDao;
 import classes.PessoaDao;
 import classes.Pessoa;
+import classes.PreferenciaalimentarDao;
+import classes.PreferenciasAlimentares;
 
 import java.util.Scanner;
 
@@ -54,7 +58,7 @@ public class Interface {
         p.setSenha(scan.nextLine());
          
         //funçao verefica se a conta ja existe
-        if(PessoaDao.verifica_usuario(p.getLogin(), p.getSenha()) != 0)
+        if(PessoaDao.verifica_usuario(p.getLogin(), p.getSenha()) != 2)
         {
             //avisa a existencia do usuario
             System.out.println("Conta já cadastrada!");
@@ -64,7 +68,6 @@ public class Interface {
         }
         else
         {
-            System.out.println("Usuario cadastrado!");
             //armazenar na memoria
             PessoaDao.armazenarPessoa(p);
         }
@@ -145,9 +148,75 @@ public class Interface {
         Dieta dieta = new Dieta(objetivo, tipo, pessoa, avaliacao, quant_refeicoes);
     }
     
-    private void preferencias()
+    private void preferencias(int idUsuario)
     {
+        System.out.print("""
+                Voce gostaria de escolher alguns alimentos de sua preferencia para ter na dieta?"
+                (sim) ou (nao)...: """);
+        String escolha = scan.nextLine();
         
+        if(escolha.equals("sim"))
+        {
+            System.out.print("Quantos alimentos gostaria de escolher?..: ");
+            int quant = Integer.parseInt(scan.nextLine());
+            
+            PreferenciasAlimentares preferencias = new PreferenciasAlimentares(quant, idUsuario);
+            
+            //laço para receber os alimentos
+            for(int i=0; i < quant; i++)
+            {
+                String opc="sim";
+                do
+                {
+                    opc = "sim";
+                    System.out.print("Digite o nome do alimento..; ");
+                    String nome = scan.nextLine();
+
+                    int num = AlimentoDao.buscaAlimento(nome);
+                    
+                    System.out.println(num);
+                    
+                    if(num < 0) //Não há o alimento armazenado previamente
+                    {
+                        //verificando se o usuario deseja armazenar o novo alimento ou nao
+                        System.out.print("Não há este alimento em nosso banco de dados, gostaria de adiciona-lo? (sim) ou (nao)...: ");
+                        opc = scan.nextLine();
+                          
+                        if(opc.equals("sim")) //realizar o armazenamento do novo alimento
+                        {
+                            System.out.print("Digite quantas gramas de proteínas o/a "+nome+" tem em uma porção de 100g..: ");
+                            double proteina = Double.parseDouble(scan.nextLine());
+                            
+                            System.out.print("Digite quantas gramas de carboidratos o/a "+nome+" tem em uma porção de 100g..: ");
+                            double carboidrato = Double.parseDouble(scan.nextLine());
+                            
+                            System.out.print("Digite quantas gramas de gourdura o/a "+nome+" tem em uma porção de 100g..: ");
+                            double gordura= Double.parseDouble(scan.nextLine());
+                            
+                            //alimento novo criado
+                            Alimento novoAlimento = new Alimento(nome, proteina, carboidrato, gordura);
+                            
+                            //alimento salvo nas preferencias do usuario
+                            preferencias.adicionarAlimento(novoAlimento);
+                            System.out.println("Alimento adicionado no armazenamento e salvo em suas preferencias");
+                        }
+                    }
+                    else //O alimento já está previamente armazenado
+                    {
+                        //alimento salvo nas preferencias do usuario
+                        preferencias.adicionarAlimento(AlimentoDao.getBd_alimento(num));
+                        System.out.println("Alimento salvo em suas preferencias");
+                    }
+                }while(opc.equals("nao")); //condição para o usuario escolher outro alimento, caso não queira adicionar o novo
+            }
+            
+            //SALVAR PREFERENCIA NO DAO
+            PreferenciaalimentarDao.armazenaPreferencia(preferencias);
+            
+            //MOSTRAR PREFERENCIAS
+            PreferenciaalimentarDao.getBd_preferencias(idUsuario).mostrarAlimentosNasFontes();
+        }
+
     }
     
     private void calculo_refeicao()
@@ -159,6 +228,8 @@ public class Interface {
     private void gerar_dietas(Pessoa pessoa, AvaliacaoFisica avaliacao)
     {
         calculo_dieta(pessoa, avaliacao);
+        preferencias((int) pessoa.getId());
+        
         
     }
     
@@ -188,7 +259,7 @@ public class Interface {
                     
                     int i = PessoaDao.verifica_usuario(user, senha);
                     
-                    if(i < 1) //nao logado
+                    if(i < 0) //nao logado
                     {
                         System.out.println("Usuário não encontrado!");
                     }

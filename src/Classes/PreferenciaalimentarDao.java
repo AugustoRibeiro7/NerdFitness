@@ -24,5 +24,11 @@ public class PreferenciaalimentarDao {
     }
 
     
+    //GET
+
+    public static PreferenciasAlimentares getBd_preferencias(int posicao) {
+        return bd_preferencias[posicao];
+    }
+    
     
 }
