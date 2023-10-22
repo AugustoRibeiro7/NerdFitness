@@ -174,7 +174,6 @@ public class Interface {
 
                     int num = AlimentoDao.buscaAlimento(nome);
                     
-                    System.out.println(num);
                     
                     if(num < 0) //Não há o alimento armazenado previamente
                     {
@@ -294,7 +293,6 @@ public class Interface {
                                     }
                                     else
                                     {
-                                        System.out.println("Dieta Gerada!");
                                         gerar_dietas(usuario_log, AvaliacaoFisicaDao.getAvaliacoes((int) usuario_log.getId()));
                                         
                                         

@@ -5,6 +5,7 @@
 package classes;
 
 import java.time.LocalDate;
+import Classes.RefeicaoAlimento;
 
 /**
  *
@@ -18,34 +19,25 @@ public class Refeicao {
     
     
     //variaveis
-    private Alimento[] cafe = new Alimento[10]; 
-    private Alimento[] almoco = new Alimento[10]; 
-    private Alimento[] janta = new Alimento[10]; 
-    private Alimento[] outros = new Alimento[10]; 
+    private RefeicaoAlimento[] cafe = new RefeicaoAlimento[5]; 
+    private RefeicaoAlimento almoco = new RefeicaoAlimento(); 
+    private RefeicaoAlimento janta = new RefeicaoAlimento(); 
+    private RefeicaoAlimento[] outros = new RefeicaoAlimento[5]; 
+    
     private int cafeCount; 
-    private int almocoCount; 
-    private int jantaCount; 
     private int outrosCount; 
-    //private double cafe;
-    //private double almoco;
-    //private double janta;
-    //private double outros;
-    private double cafeLimite;
-    private double almocoLimite;
-    private double jantaLimite;
-    private double outrosLimite;
+
     private int proteina;
     private int carboidrato;
     private int gordura;
     private int caloriasTotal;
-    private String refeicao;
     
     private LocalDate dataCriacao;
-     private LocalDate dataModificacao;
+    private LocalDate dataModificacao;
     
     
     
-    public Refeicao(Dieta dieta,String refeicao)
+    public Refeicao()
     {
         //controle do id
          Refeicao.quant_refeicao++;
@@ -53,15 +45,7 @@ public class Refeicao {
         
         //data de criação
          setDataCriacao(LocalDate.now());
-         
-         
-                //Definindo limites de KCAL para cada refeicao
-                cafeLimite = (dieta.getCaloriasdietatotal() * 0.25);
-                almocoLimite = (dieta.getCaloriasdietatotal()* 0.35);
-                jantaLimite = (dieta.getCaloriasdietatotal()* 0.25);
-                outrosLimite = (dieta.getCaloriasdietatotal()* 0.25);
-                this.refeicao = refeicao;
-                   
+        
     }
     
     //Atualizar data de modificação
@@ -69,216 +53,70 @@ public class Refeicao {
         this.dataModificacao = LocalDate.now();
     }
     
-    //ADICIONAR ALIMENTOS AS REFEIÇÕES
-    //cafe
-    public void adicionarAlimentoAlmoco(Alimento alimento) {
-        if (almocoCount < almoco.length) {
-            almoco[almocoCount] = alimento;
-            almocoCount++;
+    //METODO PARA ADICIONAR AS REFEICOES
+    public void adicionarRefeicao(RefeicaoAlimento refeicao) {
+        if(refeicao.getNomeRefeicao().equals("almoco"))
+        {
+            almoco= refeicao;
         }
-    }
-    
-    //JANTA
-    
-        public void adicionarAlimentoJanta(Alimento alimento) {
-        if (jantaCount < janta.length) {
-            janta[jantaCount] = alimento;
-            jantaCount++;
-            atualizarDataModificacao();
+        else if(refeicao.getNomeRefeicao().equals("janta"))
+        {
+            janta = refeicao;
         }
-    }
-        
-     //CAFE
-        public void adicionarAlimentoCafe(Alimento alimento) {
-        if (cafeCount < cafe.length) {
-            cafe[cafeCount] = alimento;
-            cafeCount++;
-            atualizarDataModificacao();
+        else if(refeicao.getNomeRefeicao().equals("cafe"))
+        {
+            if (cafeCount < cafe.length) {
+                cafe[cafeCount] = refeicao;
+                cafeCount++;
+            }
         }
-    }
-        
-    //OUTROS
-        public void adicionarAlimentoOutros(Alimento alimento) {
-        if (outrosCount < outros.length) {
-            outros[outrosCount] = alimento;
+        else //outros
+        {
+            if (outrosCount < outros.length) {
+            outros[outrosCount] = refeicao;
             outrosCount++;
-            atualizarDataModificacao();
-        }
-    }
-        
-        
-     //CONTAR MACROS
-     // Método para calcular o total de proteína, carboidrato, gordura e calorias na refeição
-    public void calcularNutrientes() {
-        int totalProteina = 0;
-        int totalCarboidrato = 0;
-        int totalGordura = 0;
-        int totalCalorias = 0;
-
-        if (refeicao.equalsIgnoreCase("cafe")) {
-            for (int i = 0; i < cafeCount; i++) {
-                totalProteina += cafe[i].getProteina();
-                totalCarboidrato += cafe[i].getCarboidrato();
-                totalGordura += cafe[i].getGordura();
-                totalCalorias += cafe[i].getCalorias();
-            }
-        } else if (refeicao.equalsIgnoreCase("almoco")) {
-            for (int i = 0; i < almocoCount; i++) {
-                totalProteina += almoco[i].getProteina();
-                totalCarboidrato += almoco[i].getCarboidrato();
-                totalGordura += almoco[i].getGordura();
-                totalCalorias += almoco[i].getCalorias();
-            }
-        } else if (refeicao.equalsIgnoreCase("janta")) {
-            for (int i = 0; i < jantaCount; i++) {
-                totalProteina += janta[i].getProteina();
-                totalCarboidrato += janta[i].getCarboidrato();
-                totalGordura += janta[i].getGordura();
-                totalCalorias += janta[i].getCalorias();
-            }
-        } else if (refeicao.equalsIgnoreCase("outros")) {
-            for (int i = 0; i < outrosCount; i++) {
-                totalProteina += outros[i].getProteina();
-                totalCarboidrato += outros[i].getCarboidrato();
-                totalGordura += outros[i].getGordura();
-                totalCalorias += outros[i].getCalorias();
             }
         }
-
-        System.out.println("Total de Proteína: " + totalProteina);
-        System.out.println("Total de Carboidrato: " + totalCarboidrato);
-        System.out.println("Total de Gordura: " + totalGordura);
-        System.out.println("Total de Calorias: " + totalCalorias);
         
+        //receber valores nutricionais das refeições
+        proteina += refeicao.getProteina();
+        carboidrato += refeicao.getCarboidrato();
+        gordura += refeicao.getGordura();
+        caloriasTotal += refeicao.getCalorias();
+        
+        //atualizar data de modificação
         atualizarDataModificacao();
     }
+        
     
     //GETES E SETTERS PADRAO
 
-    public Alimento[] getCafe() {
+    public RefeicaoAlimento[] getCafe() {
         return cafe;
     }
 
-    public void setCafe(Alimento[] cafe) {
-        atualizarDataModificacao();
-        this.cafe = cafe;
-    }
-
-    public Alimento[] getAlmoco() {
+    public RefeicaoAlimento getAlmoco() {
         return almoco;
     }
 
-    public void setAlmoco(Alimento[] almoco) {
-        atualizarDataModificacao();
-        this.almoco = almoco;
-    }
-
-    public Alimento[] getJanta() {
+    public RefeicaoAlimento getJanta() {
         return janta;
     }
 
-    public void setJanta(Alimento[] janta) {
-        atualizarDataModificacao();
-        this.janta = janta;
-    }
 
-    public Alimento[] getOutros() {
+    public RefeicaoAlimento[] getOutros() {
         return outros;
     }
 
-    public void setOutros(Alimento[] outros) {
-        atualizarDataModificacao();
-        this.outros = outros;
-    }
 
-    public double getCafeLimite() {
-        return cafeLimite;
-    }
-
-    public void setCafeLimite(double cafeLimite) {
-        atualizarDataModificacao();
-        this.cafeLimite = cafeLimite;
-    }
-
-    public double getAlmocoLimite() {
-        return almocoLimite;
-    }
-
-    public void setAlmocoLimite(double almocoLimite) {
-        atualizarDataModificacao();
-        this.almocoLimite = almocoLimite;
-    }
-
-    public double getJantaLimite() {
-        return jantaLimite;
-    }
-
-    public void setJantaLimite(double jantaLimite) {
-        atualizarDataModificacao();
-        this.jantaLimite = jantaLimite;
-    }
-
-    public double getOutrosLimite() {
-        return outrosLimite;
-    }
-
-    public void setOutrosLimite(double outrosLimite) {
-        atualizarDataModificacao();
-        this.outrosLimite = outrosLimite;
-    }
-
-    public int getProteina() {
-        return proteina;
-    }
-
-    public void setProteina(int proteina) {
-        atualizarDataModificacao();
-        this.proteina = proteina;
-    }
-
-    public int getCarboidrato() {
-        return carboidrato;
-    }
-
-    public void setCarboidrato(int carboidrato) {
-        atualizarDataModificacao();
-        this.carboidrato = carboidrato;
-    }
-    
-    
-    
-
-    public int getGordura() {
-        return gordura;
-    }
-
-    public void setGordura(int gordura) {
-        atualizarDataModificacao();
-        this.gordura = gordura;
-    }
-
-    public int getCaloriasTotal() {
-        return caloriasTotal;
-    }
-
-    public void setCaloriasTotal(int caloriasTotal) {
-        atualizarDataModificacao();
-        this.caloriasTotal = caloriasTotal;
-    }
-
-    public String getRefeicao() {
-        return refeicao;
-    }
-
-    public void setRefeicao(String refeicao) {
-        atualizarDataModificacao();
-        this.refeicao = refeicao;
-    }
+    // GET DO ID
 
     public int getId() {
         return id;
     }
 
+    //GET E SETERS DATAS
+    
     public LocalDate getDataCriacao() {
         return dataCriacao;
     }
