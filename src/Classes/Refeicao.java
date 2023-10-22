@@ -19,12 +19,11 @@ public class Refeicao {
     
     
     //variaveis
-    private RefeicaoAlimento[] cafe = new RefeicaoAlimento[5]; 
+    private RefeicaoAlimento cafe = new RefeicaoAlimento(); 
     private RefeicaoAlimento almoco = new RefeicaoAlimento(); 
     private RefeicaoAlimento janta = new RefeicaoAlimento(); 
     private RefeicaoAlimento[] outros = new RefeicaoAlimento[5]; 
     
-    private int cafeCount; 
     private int outrosCount; 
 
     private int proteina;
@@ -65,10 +64,8 @@ public class Refeicao {
         }
         else if(refeicao.getNomeRefeicao().equals("cafe"))
         {
-            if (cafeCount < cafe.length) {
-                cafe[cafeCount] = refeicao;
-                cafeCount++;
-            }
+
+                cafe= refeicao;
         }
         else //outros
         {
@@ -87,11 +84,43 @@ public class Refeicao {
         //atualizar data de modificação
         atualizarDataModificacao();
     }
+    
+    //METODO PARA MOSTRAR AS REFEICOES
+    public void mostrarRefeicoes()
+    {
+        System.out.println("===== Dieta =====\n");
+        System.out.println("---Cafe da manha---");
+        for(int i=0; cafe.getAlimentos()[i] != null && i < cafe.getAlimentos().length; i++)
+        {
+            System.out.println(cafe.getAlimentos()[i].getNome());
+        }
+        
+        System.out.println("---Almoco---");
+        for(int i=0; almoco.getAlimentos()[i] != null && i < almoco.getAlimentos().length; i++)
+        {
+            System.out.println(almoco.getAlimentos()[i].getNome());
+        }
+        
+        System.out.println("---Jantar---");
+        for(int i=0; janta.getAlimentos()[i] != null && i < janta.getAlimentos().length; i++)
+        {
+            System.out.println(janta.getAlimentos()[i].getNome());
+        }
+        
+        for(int x=0; outros[x] != null && x < outros.length; x++)
+        {
+            System.out.println("---Lanche "+ x+1 +"---");
+            for(int i=0; outros[x].getAlimentos()[i] != null && i < outros[x].getAlimentos().length; i++)
+            {
+                System.out.println(outros[x].getAlimentos()[i].getNome());
+            }
+        }
+    }
         
     
     //GETES E SETTERS PADRAO
 
-    public RefeicaoAlimento[] getCafe() {
+    public RefeicaoAlimento getCafe() {
         return cafe;
     }
 
@@ -129,14 +158,11 @@ public class Refeicao {
         return dataModificacao;
     }
     
-    
+    //GETTERS DOS VALORES NUTRICIONAIS
 
-        
-
-    
-    
-    
-    
+    public int getCaloriasTotal() {
+        return caloriasTotal;
+    }
     
     
 }

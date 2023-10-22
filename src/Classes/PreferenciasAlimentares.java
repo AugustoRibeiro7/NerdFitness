@@ -82,8 +82,12 @@ public class PreferenciasAlimentares {
     //Metodo para mostrar os alimentos registrados nas preferencias
      public void mostrarAlimentosNasFontes() {
         System.out.println("Fonte de Proteína:");
-        for (int i = 0; fontesProteina[i] != null && i < contadorProteina; i++) {
+        for (int i = 0; i < contadorProteina; i++) {
             Alimento alimento = fontesProteina[i];
+            
+            if(alimento == null)
+                break;
+            
             System.out.println("Nome: " + alimento.getNome());
             System.out.println("Proteína: " + alimento.getProteina());
             System.out.println("Carboidrato: " + alimento.getCarboidrato());
@@ -92,8 +96,12 @@ public class PreferenciasAlimentares {
         }
 
         System.out.println("Fonte de Carboidrato:");
-        for (int i = 0; fontesCarboidrato[i] != null && i < contadorCarboidrato; i++) {
+        for (int i = 0; i < contadorCarboidrato; i++) {
             Alimento alimento = fontesCarboidrato[i];
+            
+            if(alimento == null)
+                break;
+            
             System.out.println("Nome: " + alimento.getNome());
             System.out.println("Proteína: " + alimento.getProteina());
             System.out.println("Carboidrato: " + alimento.getCarboidrato());
@@ -102,8 +110,12 @@ public class PreferenciasAlimentares {
         }
 
         System.out.println("Fonte de Gordura:");
-        for (int i = 0; fontesGordura[i] != null && i < contadorGordura; i++) {
+        for (int i = 0; i < contadorGordura; i++) {
             Alimento alimento = fontesGordura[i];
+            
+            if(alimento == null)
+                break;
+            
             System.out.println("Nome: " + alimento.getNome());
             System.out.println("Proteína: " + alimento.getProteina());
             System.out.println("Carboidrato: " + alimento.getCarboidrato());
@@ -112,6 +124,7 @@ public class PreferenciasAlimentares {
         }
     }
 
+     //GETERS E SETERS DO ID
     public int getId() {
         return id;
     }
@@ -120,6 +133,7 @@ public class PreferenciasAlimentares {
         this.id = id;
     }
 
+    //GETERS E SETERS DAS DATAS
     public LocalDate getDataCriacao() {
         return dataCriacao;
     }
@@ -131,6 +145,20 @@ public class PreferenciasAlimentares {
     public LocalDate getDataModificacao() {
         return dataModificacao;
     }
+    
+    //GETERS E SETERS DAS PREFERENCIAS
 
+    public Alimento[] getFontesProteina() {
+        return fontesProteina;
+    }
+
+    public Alimento[] getFontesCarboidrato() {
+        return fontesCarboidrato;
+    }
+
+    public Alimento[] getFontesGordura() {
+        return fontesGordura;
+    }
+    
         
 }

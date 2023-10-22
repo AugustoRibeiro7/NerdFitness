@@ -48,8 +48,8 @@ public class Dieta {
         
         // Loop infinito
         for (; ; ) {  
-            if (objetivo.equals("DIMINUIR O PESO") || objetivo.equals("MANTER O PESO") ||
-                objetivo.equals("MELHORAR COMPOSIÇÃO CORPORAL") || objetivo.equals("AUMENTAR O PESO")) {
+            if (objetivo.equalsIgnoreCase("DIMINUIR O PESO") || objetivo.equalsIgnoreCase("MANTER O PESO") ||
+                objetivo.equalsIgnoreCase("MELHORAR COMPOSIÇÃO CORPORAL") || objetivo.equalsIgnoreCase("AUMENTAR O PESO")) {
                 this.objetivo = objetivo;  // Atribui o tipo válido
                 break;  // Sai do loop quando o tipo é válido
             } else {
@@ -70,19 +70,19 @@ public class Dieta {
 
         //CALCULO DA DIETA
 
-        if("MANTER O PESO".equals(this.objetivo))
+        if("MANTER O PESO".equalsIgnoreCase(this.objetivo))
         {
             caloriasdietatotal = avaliacao.getTMB();
 
         }
 
-        if("DIMINUIR O PESO".equals(this.objetivo))
+        if("DIMINUIR O PESO".equalsIgnoreCase(this.objetivo))
         {
             caloriasdietatotal = avaliacao.getTMB()-500;
 
         }
 
-        if("AUMENTAR O PESO".equals(this.objetivo))
+        if("AUMENTAR O PESO".equalsIgnoreCase(this.objetivo))
         {
             caloriasdietatotal = avaliacao.getTMB()+500;
         }
@@ -193,6 +193,7 @@ public class Dieta {
         this.numRefeicoes = numRefeicoes;
     }
     
+
     
 
     //METODO TIPO DE DIETA

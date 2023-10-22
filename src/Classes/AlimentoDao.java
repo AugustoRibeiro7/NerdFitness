@@ -63,9 +63,6 @@ public class AlimentoDao {
         int i;
         for(i=0; bd_alimento[i] != null && !nomeAlimento.equals(bd_alimento[i].getNome()) && i < bd_alimento.length; i++){}
         
-        System.out.println(i);
-        System.out.println(nomeAlimento);
-        System.out.println(bd_alimento[0].getNome());
         if (bd_alimento[i] != null)
         {
             if(nomeAlimento.equals(bd_alimento[i].getNome()))

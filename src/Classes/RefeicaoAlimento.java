@@ -30,6 +30,7 @@ public class RefeicaoAlimento {
 
     //CONSTRUTOR
     public RefeicaoAlimento() {
+        
     }
     
 
@@ -47,7 +48,8 @@ public class RefeicaoAlimento {
     
     
     //METODO PARA DICIONAR OS ALIMENTOS DA REFEICAO
-    public void adicionarAlimento(Alimento alimento) {
+    public void adicionarAlimento(Alimento alimento, String tipoRefeicao) {
+        this.nomeRefeicao = tipoRefeicao;
         //definir o limite baseado no tipo da refeição
         double limite;
         limite = switch (nomeRefeicao) {
@@ -103,6 +105,23 @@ public class RefeicaoAlimento {
         return calorias;
     }
     
+    //GETERS LIMITE
+
+    public double getCafeLimite() {
+        return cafeLimite;
+    }
+
+    public double getAlmocoLimite() {
+        return almocoLimite;
+    }
+
+    public double getJantaLimite() {
+        return jantaLimite;
+    }
+
+    public double getOutrosLimite() {
+        return outrosLimite;
+    }
     
     
     
