@@ -17,8 +17,15 @@ public class RefeicaoDAO {
     {
         //AvaliacaoFisicaDao.Avaliacoes[id_pessoa] = avaliacao;
         //Bucar o erro do tipo 
-        RefeicaoDAO.bd_refeicao[r.getId()] = r;
+        RefeicaoDAO.bd_refeicao[id] = r;
     }
+    
+    //GET REFEICAO DAO
+
+    public static Refeicao getBd_refeicao(int posicao) {
+        return bd_refeicao[posicao];
+    }
+    
            
     
 }

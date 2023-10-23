@@ -29,7 +29,7 @@ public class Alimento {
     
     
     
-    //Contrutor do alimento testandp
+    //Contrutor do alimento testando
     public Alimento (String nome,double proteina, double carboidrato, double gordura)
     {
         //controle do id

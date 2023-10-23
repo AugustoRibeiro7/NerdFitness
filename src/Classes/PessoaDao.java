@@ -64,7 +64,6 @@ public class PessoaDao {
         
         if(i < clientes.length)
         {
-            System.out.println("Usuario cadastrado!");
             clientes[i] = p;
         }  
         else
