@@ -4,6 +4,7 @@
  */
 package classes;
 
+import Classes.Post;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -27,6 +28,25 @@ public class Pessoa {
      private String tipoUsuario;
      private LocalDate dataCriacao;
      private LocalDate dataModificacao;
+     
+     //VARIAVEIS PARA REDE SOCIAL
+    private Pessoa[] seguidores;
+
+    public Pessoa[] getSeguidores() {
+        return seguidores;
+    }
+
+    public void setSeguidores(Pessoa[] seguidores) {
+        this.seguidores = seguidores;
+    }
+
+    public DateTimeFormatter getDtf() {
+        return dtf;
+    }
+
+    public void setDtf(DateTimeFormatter dtf) {
+        this.dtf = dtf;
+    }
      
      //formato para datas
      private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -126,6 +146,10 @@ public class Pessoa {
 
     public LocalDate getDataModificacao() {
         return dataModificacao;
+    }
+
+    public Post[] getPosts() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     
