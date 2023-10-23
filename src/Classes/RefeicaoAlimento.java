@@ -30,7 +30,7 @@ public class RefeicaoAlimento {
 
     //CONSTRUTOR
     public RefeicaoAlimento() {
-        
+        this.calorias = 0;
     }
     
 

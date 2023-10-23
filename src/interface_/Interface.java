@@ -17,7 +17,6 @@ import classes.PreferenciaalimentarDao;
 import classes.PreferenciasAlimentares;
 import classes.Refeicao;
 import classes.RefeicaoDAO;
-import com.sun.source.tree.SwitchTree;
 import java.util.Random;
 
 import java.util.Scanner;
@@ -285,18 +284,15 @@ public class Interface {
     
     private void calculo_refeicao(int posicao, boolean preferencia)
     {
-        System.out.println("TESTE1");
         Refeicao refeicoes;
         boolean testador;
         if(preferencia) //tem preferencias
         {
-            System.out.println("TESTE2");
             refeicoes = addPreferencia(posicao);
             testador = true;
         }
         else //nao tem preferencias
         {
-            System.out.println("TESTE2.5");
             //CRIANDO OBJETO PARA SALVAR AS REFEIÇÕES   
             refeicoes = new Refeicao();
             testador = false;
@@ -310,14 +306,15 @@ public class Interface {
         
         if(calculo > 0)
         {
-            System.out.println("TESTE3");
             System.out.print("Valor calorico faltando em sua dieta: " + String.format("%.2f", calculo) +
                              "\n Como deseja adicionar os alimentos? \n 1- Manualmente \n 2- Automaticamente \n ..: ");
             int escolha = Integer.parseInt(scan.nextLine());
             
+            //recebendo dieta
+            Dieta dieta = DietaDao.getDietas(posicao);
+            
             if(escolha == 2) //automatico
             {
-                Dieta dieta = DietaDao.getDietas(posicao);
                 int quant=0;
                 do
                 {
@@ -366,11 +363,10 @@ public class Interface {
                     Random random = new Random();
                     Alimento vetor = AlimentoDao.getBd_alimento(random.nextInt(16));
 
-                    //LAÇO PARA ADICIONAR AS PREFERENCIAS EM CADA REFEIÇÃO
+                    //LAÇO PARA ADICIONAR OS ELEMENTOS ALEATORIAMENTE EM CADA REFEIÇÃO
                     for(int i=0; newRefeicao.getCalorias() < limite; i++)
                     {
                         newRefeicao.adicionarAlimento(vetor, tipoRefeicao);
-                        System.out.println("TESTE STRING");
                         vetor = AlimentoDao.getBd_alimento(random.nextInt(16));
                     }
 
@@ -389,14 +385,120 @@ public class Interface {
                 //SALVAR REFEICOES NO DAO
                 RefeicaoDAO.guardarRefeicao(refeicoes, posicao);
             }
-            else
+            else //manual
             {
-                System.out.println("Gerar manual");
+                
+                int quant=0;
+                do
+                {
+                    RefeicaoAlimento newRefeicao;
+                    if(!testador)
+                    {
+                        //CRIANDO A NOVA REFEICAO
+                        newRefeicao = new RefeicaoAlimento();
+                        newRefeicao.definirLimite(dieta);
+                    }
+                    else
+                    {
+                        if(quant == 0)
+                            newRefeicao = refeicoes.getAlmoco();
+                        else if(quant == 1)
+                            newRefeicao = refeicoes.getJanta();
+                        else if(quant == 2)
+                            newRefeicao = refeicoes.getCafe();
+                        else
+                            newRefeicao = refeicoes.getOutros()[quant];
+                    }
+
+                    
+                    String tipoRefeicao;
+                    tipoRefeicao = switch (quant) {
+                        case 0 -> "almoco";
+                        case 1 -> "janta";
+                        case 2 -> "cafe";
+                        default -> "outro";
+                    };
+          
+                    double limite;
+                    switch (tipoRefeicao) {
+                        case "almoco":
+                            limite = newRefeicao.getAlmocoLimite();
+                            break;
+                        case "janta":
+                            limite = newRefeicao.getJantaLimite();
+                            break;
+                        case "cafe":
+                            limite = newRefeicao.getCafeLimite();
+                            break;
+                        default:
+                            limite = newRefeicao.getOutrosLimite();
+                    }
+                    
+                    //laço para receber os alimentos
+                    while(newRefeicao.getCalorias() < limite)
+                    {
+                        String opc="sim";
+                        do
+                        {
+                            opc = "sim";
+                            System.out.print("Digite o nome do alimento..: ");
+                            String nome = scan.nextLine();
+
+                            int num = AlimentoDao.buscaAlimento(nome);
+
+
+                            if(num < 0) //Não há o alimento armazenado previamente
+                            {
+                                //verificando se o usuario deseja armazenar o novo alimento ou nao
+                                System.out.print("Não há este alimento em nosso banco de dados, gostaria de adiciona-lo? (sim) ou (nao)...: ");
+                                opc = scan.nextLine();
+
+                                if(opc.equals("sim")) //realizar o armazenamento do novo alimento
+                                {
+                                    System.out.print("Digite quantas gramas de proteínas o/a "+nome+" tem em uma porção de 100g..: ");
+                                    double proteina = Double.parseDouble(scan.nextLine());
+
+                                    System.out.print("Digite quantas gramas de carboidratos o/a "+nome+" tem em uma porção de 100g..: ");
+                                    double carboidrato = Double.parseDouble(scan.nextLine());
+
+                                    System.out.print("Digite quantas gramas de gordura o/a "+nome+" tem em uma porção de 100g..: ");
+                                    double gordura= Double.parseDouble(scan.nextLine());
+
+                                    //alimento novo criado
+                                    Alimento novoAlimento = new Alimento(nome, proteina, carboidrato, gordura);
+
+                                    //alimento salvo
+                                    newRefeicao.adicionarAlimento(novoAlimento, tipoRefeicao);
+                                    System.out.println("Alimento adicionado no armazenamento e salvo em suas preferencias");
+                                }
+                            }
+                            else //O alimento já está previamente armazenado
+                            {
+                                //alimento salvo
+                                newRefeicao.adicionarAlimento(AlimentoDao.getBd_alimento(num), tipoRefeicao);
+                                System.out.println("Alimento salvo em suas preferencias");
+                            }
+                        }while(opc.equals("nao")); //condição para o usuario escolher outro alimento, caso não queira adicionar o novo
+                    }
+
+                    if(!testador)
+                    {
+                        //CRIAR SALVA REFEICOES
+                        refeicoes.adicionarRefeicao(newRefeicao);
+                    }
+                    
+                    //subir cotador
+                    quant++;
+
+                }while(quant < dieta.getNumRefeicoes());
+                
+                //SALVAR REFEICOES NO DAO
+                RefeicaoDAO.guardarRefeicao(refeicoes, posicao);
+                
             }
         }
         else //as preferencias ja atingiram o limite da dieta
         {
-            System.out.println("TESTE6");
             //SALVAR REFEICOES NO DAO
             RefeicaoDAO.guardarRefeicao(refeicoes, posicao);
         }
@@ -410,7 +512,6 @@ public class Interface {
         boolean pref = preferencias((int) pessoa.getId());
         calculo_refeicao((int) pessoa.getId(), pref);
         
-        System.out.println("TESTE7");
         //MOSTRAR A DIETA
         RefeicaoDAO.getBd_refeicao((int) pessoa.getId()).mostrarRefeicoes();
     }
