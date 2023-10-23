@@ -72,6 +72,7 @@ public class Interface {
         }
         else
         {
+            System.out.println("Usuario cadastrado!");
             //armazenar na memoria
             PessoaDao.armazenarPessoa(p);
         }
