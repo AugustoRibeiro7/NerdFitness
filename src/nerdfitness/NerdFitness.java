@@ -24,8 +24,7 @@ public class NerdFitness {
         new AlimentoDao();
         
         
-        //testando as pessoas criadas automaticamente pelo PessoaDao
-        //System.out.println(PessoaDao.getClientes(0).getNome());
+
         
         //METODO QUE CHAMA A INTERFACE DO PROGRAMA
         new Interface();
