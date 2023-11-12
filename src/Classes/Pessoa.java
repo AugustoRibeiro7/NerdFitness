@@ -31,12 +31,17 @@ public class Pessoa {
      
      //VARIAVEIS PARA REDE SOCIAL
     private Pessoa[] seguidores;
+    
+    //Inicializar
+
 
     public Pessoa[] getSeguidores() {
         return seguidores;
     }
+    
 
     public void setSeguidores(Pessoa[] seguidores) {
+        seguidores = new Pessoa[10];
         this.seguidores = seguidores;
     }
 
@@ -151,6 +156,8 @@ public class Pessoa {
     public Post[] getPosts() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+   
     
     
     
