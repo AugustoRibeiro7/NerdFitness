@@ -551,7 +551,7 @@ public class Interface {
                     {
                         System.out.println("Usuário Logado!");
                         
-                        //recebendo usuario logado
+                        // =========== RECEBENDO USUARIO LOGADO    =====================================
                         Pessoa usuario_log = PessoaDao.getClientes(i); 
                         
                         int opc;
@@ -563,7 +563,8 @@ public class Interface {
                            Avaliação Fisica (0) 
                            Gerar Dieta (1)
                            Mostrar Dieta (2)
-                           Sair da conta (3)
+                           Redes sociais (3)
+                           Sair da conta (4)
                                              
                             Escolha sua opcao: """);
                             opc = Integer.parseInt(scan.nextLine());
@@ -595,11 +596,16 @@ public class Interface {
                                     }
                                     break;
                                 case 3:
+                                    
+                                    //REDES SOCIAIS
+                                    
+                                    break;
+                                case 4:
                                     System.out.println("Usuario desconectado!");
                                     break;
                                 
                             }
-                        }while(opc != 3);
+                        }while(opc != 4);
                         
                     }   
                     break;
